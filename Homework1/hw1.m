@@ -13,9 +13,6 @@ nu_arr = [0.25, 0.5, 0.999, 2, 4];
 % time
 T = 500;
 
-% Set random seed
-rng(69027469);
-
 %% Calibration
 nu_len = length(nu_arr);
 theta_arr = zeros(1, nu_len);
@@ -33,7 +30,6 @@ Ip1 = sparse(diag(ones(1, T-1), 1));
 Im1 = sparse(diag(ones(1, T-1), -1));
 
 %% Generating m
-ep = sigma_m*randn(T,1);
 m = zeros(T,1);
 m(1) = 1;
 for j=2:T
@@ -76,12 +72,12 @@ for i=1:nu_len
     % Households Block
     omega = (theta^(1/nu)*(1-beta)^(1-1/nu))/((1-theta)^(1/nu)+theta^(1/nu)*(1-beta)^(1-1/nu));
     eta = beta/(nu*(1-beta));
-    Phicn = -eta*phi/(gam*eta+(gam-nu)*omega*eta)*I;
-    Phicp = -(gam-nu)*omega*eta/(gam*eta+(gam-nu)*omega*eta)*I;
-    Phiqn = -phi/(gam*eta+(gam-nu)*omega*eta)*I;
-    Phiqp = gam/(gam*eta+(gam-nu)*omega*eta)*I;
-    Phicm = (gam-nu)*omega*eta/(gam*eta+(gam-nu)*omega*eta)*I;
-    Phiqm = -gam/(gam*eta+(gam-nu)*omega*eta)*I;
+    Phicn = -eta*phi/(gam*eta-(gam-nu)*omega*eta)*I;
+    Phicp = (gam-nu)*omega*eta/(gam*eta-(gam-nu)*omega*eta)*I;
+    Phiqn = -phi/(gam*eta-(gam-nu)*omega*eta)*I;
+    Phiqp = gam/(gam*eta-(gam-nu)*omega*eta)*I;
+    Phicm = -(gam-nu)*omega*eta/(gam*eta-(gam-nu)*omega*eta)*I;
+    Phiqm = -gam/(gam*eta-(gam-nu)*omega*eta)*I;
     Phixn = (1-omega)*Phicn;
     Phixp = (1-omega)*Phicp - omega*I;
     Phixm = (1-omega)*Phicm + omega*I;
