@@ -5,4 +5,6 @@ I used MATLAB to complete this homework rather than python(since I prefer MATLAB
 
 Please Check `hw1.m`.
 
-I also wrote a Python code to solve this problem. But due to time limit, I only did it for a single $\nu$.
+I also wrote a Python code to solve this problem. But due to time limit, I only did it for a single $\nu$ in `ECON210C_homework1.ipynb`.
+
+But `hw1_code.py` contains full code (including plots different $\nu$).
